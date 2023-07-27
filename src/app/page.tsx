@@ -1,6 +1,8 @@
 "use client";
 import axios from "axios";
 import { SetStateAction, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { setCookie } from "cookies-next";
 import { ApiRoutes } from "../routes";
@@ -55,6 +57,7 @@ const CenterSection = styled.section`
 `;
 
 const HomePage = () => {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -92,6 +95,7 @@ const HomePage = () => {
       setCookie("token", response.data.token, { expires });
       setMessage(response.data.message);
       setErrors([]);
+      router.push("education");
     } catch (error) {
       if (error.response && error.response.data && error.response.data.errors) {
         setErrors(error.response.data.errors);
@@ -138,6 +142,7 @@ const HomePage = () => {
             required
           />
           <input type="submit" value="Enter" />
+          <Link href={"/register"}>Register</Link>
         </form>
       </CenterSection>
     </MainContainer>
