@@ -1,59 +1,12 @@
 "use client";
-import axios from "axios";
 import { SetStateAction, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import styled from "styled-components";
+import axios from "axios";
 import { ApiRoutes } from "../../routes";
-
-const MainContainer = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const CenterSection = styled.section`
-  text-align: center;
-  padding: 20px;
-
-  p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5em;
-
-    label {
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-
-    input {
-      width: 250px;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #000;
-    }
-
-    input[type="submit"] {
-      background-color: #aaa;
-      cursor: pointer;
-      font-size: 16px;
-      padding: 5px 25px;
-      border-bottom: 1px solid #000;
-
-      &:hover {
-        background-color: #222;
-        color: #fff;
-      }
-    }
-  }
-`;
+import Button from "../../components/Button";
+import CenterSection from "../../components/CenterSection";
+import MainContainer from "../../components/MainContainer";
 
 const HomePage = () => {
   const router = useRouter();
@@ -131,7 +84,7 @@ const HomePage = () => {
             onChange={handlePasswordChange}
             required
           />
-          <input type="submit" value="Register" />
+          <Button type={"submit"} text={"Register"} onClick={() => {}}></Button>
           <Link href={"/"}>Log in</Link>
         </form>
       </CenterSection>
