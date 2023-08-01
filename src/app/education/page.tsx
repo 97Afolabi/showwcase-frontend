@@ -32,36 +32,7 @@ const EducationCard = styled.div`
     margin: 0;
   }
 `;
-/*
-const UpdateButton = styled.button`
-  background-color: #000;
-  color: #fff;
-  cursor: pointer;
-  margin-right: 8px;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: #999;
-  }
-`;
-
-const DeleteButton = styled.button`
-  background-color: #000;
-  color: #fff;
-  cursor: pointer;
-  padding: 6px 10px;
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #999;
-  }
-`;
-*/
 export default function Education() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
@@ -222,22 +193,14 @@ export default function Education() {
                     type="button"
                     text="Update"
                     onClick={() => handleUpdateEducation(education)}
+                    background="black"
                   ></Button>
-                  {/* <UpdateButton
-                    onClick={() => handleUpdateEducation(education)}
-                  >
-                    Update
-                  </UpdateButton> */}
                   <Button
                     type="button"
                     text="Delete"
                     onClick={() => handleDeleteEducation(education)}
+                    background="red"
                   ></Button>
-                  {/* <DeleteButton
-                    onClick={() => handleDeleteEducation(education)}
-                  >
-                    Delete
-                  </DeleteButton> */}
                 </div>
               </EducationCard>
             ))
