@@ -8,49 +8,13 @@ import { ApiRoutes } from "../../routes";
 import Header from "../../components/Header";
 import Modal from "../../components/Modal";
 import Button from "../../components/Button";
-
-interface Education {
-  id?: string;
-  school: string;
-  degree: string;
-  field: string;
-  startDate: string;
-  endDate: string;
-  grade: string;
-  description: string;
-}
+import Sidebar from "../../components/layout/Sidebar";
+import { IEducation } from "../../interfaces/IEducation";
 
 const MainContainer = styled.main`
   display: flex;
   justify-content: center;
   height: 100vh;
-`;
-
-const Sidebar = styled.div`
-  width: 20%;
-  margin-right: 20px;
-  background-color: #999;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: between;
-
-  h2 {
-    margin-bottom: 10px;
-    color: #fff;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      color: #fff;
-      margin-bottom: 5px;
-    }
-  }
 `;
 
 const RightColumn = styled.div`
@@ -68,6 +32,7 @@ const EducationCard = styled.div`
     margin: 0;
   }
 `;
+/*
 const UpdateButton = styled.button`
   background-color: #000;
   color: #fff;
@@ -96,10 +61,11 @@ const DeleteButton = styled.button`
     background-color: #999;
   }
 `;
+*/
 export default function Education() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
-  const [educationList, setEducationList] = useState<Education[]>([]);
+  const [educationList, setEducationList] = useState<IEducation[]>([]);
   const [school, setSchool] = useState("");
   const [degree, setDegree] = useState("");
   const [field, setField] = useState("");
@@ -146,7 +112,7 @@ export default function Education() {
   const saveEducationHistory = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const newEducation: Education = {
+    const newEducation: IEducation = {
       school,
       degree,
       field,
@@ -208,9 +174,9 @@ export default function Education() {
     saveHistory();
   };
 
-  const handleUpdateEducation = async (updatedEducation: Education) => {};
+  const handleUpdateEducation = async (updatedEducation: IEducation) => {};
 
-  const handleDeleteEducation = async (education: Education) => {
+  const handleDeleteEducation = async (education: IEducation) => {
     try {
       const token = getCookie("token");
       const response = await axios.delete(
@@ -236,14 +202,7 @@ export default function Education() {
     <>
       <Header handleOpenModal={handleOpenModal} />
       <MainContainer>
-        <Sidebar>
-          <h2>Showcase University</h2>
-          <ul>
-            {educationList.map((education, index) => (
-              <li key={index}>{education.school}</li>
-            ))}
-          </ul>
-        </Sidebar>
+        <Sidebar educationList={educationList}></Sidebar>
 
         <RightColumn>
           {educationList.length > 0 ? (
@@ -259,16 +218,26 @@ export default function Education() {
                 <p>Grade: {education.grade}</p>
                 <p>Description: {education.description}</p>
                 <div>
-                  <UpdateButton
+                  <Button
+                    type="button"
+                    text="Update"
+                    onClick={() => handleUpdateEducation(education)}
+                  ></Button>
+                  {/* <UpdateButton
                     onClick={() => handleUpdateEducation(education)}
                   >
                     Update
-                  </UpdateButton>
-                  <DeleteButton
+                  </UpdateButton> */}
+                  <Button
+                    type="button"
+                    text="Delete"
+                    onClick={() => handleDeleteEducation(education)}
+                  ></Button>
+                  {/* <DeleteButton
                     onClick={() => handleDeleteEducation(education)}
                   >
                     Delete
-                  </DeleteButton>
+                  </DeleteButton> */}
                 </div>
               </EducationCard>
             ))

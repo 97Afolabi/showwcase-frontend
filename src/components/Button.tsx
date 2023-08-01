@@ -4,6 +4,7 @@ const StyledButton = styled.button`
   background-color: #aaa;
   cursor: pointer;
   font-size: 16px;
+  margin: 4px 8px;
   padding: 8px 30px;
   border: 0;
 
